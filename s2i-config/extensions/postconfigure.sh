@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 
-echo "Appending CLI operations to ${CLI_SCRIPT_FILE}"
+set -x
 
-echo "
-  /subsystem=datasources/data-source=database_server-DATABASE_SERVER:write-attribute(name=pool-use-strict-min, value=true)
-  /subsystem=datasources/data-source=database_server-DATABASE_SERVER:write-attribute(name=idle-timeout-minutes, value=5)
-" >> "${CLI_SCRIPT_FILE}"
+ENV_DIR=/etc/eap-environment
+cd $HOME
+curl -o postgresql-42.2.22.jar https://jdbc.postgresql.org/download/postgresql-42.2.22.jar
+
+# Run EAP modifications CLI script
+$JBOSS_HOME/bin/jboss-cli.sh --file=$ENV_DIR/configure.cli
+
+set +x
+
+

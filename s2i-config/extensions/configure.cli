@@ -1,0 +1,3 @@
+embed-server -c=standalone-openshift.xml
+deploy /etc/eap-environment/postgresql-42.2.22.jar
+data-source add --name=sampledb --connection-url=jdbc:postgresql://postgresql-ephemeral:5432/sampledb --user-name=user530 --password=1UicKbQdxb1F5KH2 --jndi-name=java:/jboss/datasources/PostgreSQLDS --driver-name=postgresql-42.2.22.jar
